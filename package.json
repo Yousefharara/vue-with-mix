@@ -25,6 +25,7 @@
     "dependencies": {
         "autoprefixer": "^10.5.4",
         "tailwindcss": "^2.2.19",
-        "vue": "^2.7.16"
+        "vue": "^2.7.16",
+        "vue-router": "^3.6.5"
     }
 }
