@@ -25,8 +25,18 @@ export default {
             return this.$store.getters["auth/currentUser"];
         },
 
+        getToken() {
+            return this.$store.getters["auth/token"];
+        },
+
         loggedIn() {
             return this.$store.getters["auth/isAuthenticated"];
+        },
+    },
+
+    watch: {
+        user(value) {
+            console.log("watch value : ", value);
         },
     },
 };
@@ -35,18 +45,30 @@ export default {
 <template>
     <div class="my-10">
         <h2
-        style="width: fit-content;"
+            style="width: fit-content"
             class="text-2xl mx-auto border-b-2 border-indigo-500"
         >
             Login Page
         </h2>
 
         <article class="flex gap-4 items-center justify-center mt-10">
-            <button @click="login" class="px-3 py-1 rounded-md bg-indigo-500 text-white border border-gray-400">Login</button>
-            <button @click="logout" class="px-3 py-1 rounded-md border-indigo-500 border">Logout</button>
+            <button
+                @click="login"
+                class="px-3 py-1 rounded-md bg-indigo-500 text-white border border-gray-400"
+            >
+                Login
+            </button>
+            <button
+                @click="logout"
+                class="px-3 py-1 rounded-md border-indigo-500 border"
+            >
+                Logout
+            </button>
         </article>
 
-        <p v-if="loggedIn">Name is : {{user.name}}</p>
-
+        <p v-if="loggedIn">
+            Name is : {{ user.name }} with email {{ user.email }} and token
+            {{ getToken }}
+        </p>
     </div>
 </template>

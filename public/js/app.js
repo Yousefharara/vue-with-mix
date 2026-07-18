@@ -89,6 +89,11 @@ __webpack_require__.r(__webpack_exports__);
     HeroSection: _components_organisms_HeroHomeSection_vue__WEBPACK_IMPORTED_MODULE_0__["default"],
     MainLayout: _layouts_mainLayout_vue__WEBPACK_IMPORTED_MODULE_1__["default"]
   },
+  data: function data() {
+    return {
+      listOfData: ['Yousef', "ahmed", "ali", "mostafa"]
+    };
+  },
   computed: {
     user: function user() {
       return this.$store.getters["auth/currentUser"];
@@ -132,8 +137,16 @@ __webpack_require__.r(__webpack_exports__);
     user: function user() {
       return this.$store.getters["auth/currentUser"];
     },
+    getToken: function getToken() {
+      return this.$store.getters["auth/token"];
+    },
     loggedIn: function loggedIn() {
       return this.$store.getters["auth/isAuthenticated"];
+    }
+  },
+  watch: {
+    user: function user(value) {
+      console.log("watch value : ", value);
     }
   }
 });
@@ -1175,6 +1188,17 @@ var render = function () {
       _vm._v(" "),
       _c("h2", [_vm._v("Hello Home Page")]),
       _vm._v(" "),
+      _c(
+        "div",
+        { staticClass: "flex my-5 justify-center items-center gap-4" },
+        _vm._l(_vm.listOfData, function (data) {
+          return _c("h2", { key: data }, [
+            _vm._v("\n            " + _vm._s(data) + "\n        "),
+          ])
+        }),
+        0
+      ),
+      _vm._v(" "),
       _vm.loggedIn
         ? _c("p", [_vm._v("Name is : " + _vm._s(_vm.user.name))])
         : _vm._e(),
@@ -1226,7 +1250,7 @@ var render = function () {
               "px-3 py-1 rounded-md bg-indigo-500 text-white border border-gray-400",
             on: { click: _vm.login },
           },
-          [_vm._v("Login")]
+          [_vm._v("\n            Login\n        ")]
         ),
         _vm._v(" "),
         _c(
@@ -1235,13 +1259,23 @@ var render = function () {
             staticClass: "px-3 py-1 rounded-md border-indigo-500 border",
             on: { click: _vm.logout },
           },
-          [_vm._v("Logout")]
+          [_vm._v("\n            Logout\n        ")]
         ),
       ]
     ),
     _vm._v(" "),
     _vm.loggedIn
-      ? _c("p", [_vm._v("Name is : " + _vm._s(_vm.user.name))])
+      ? _c("p", [
+          _vm._v(
+            "\n        Name is : " +
+              _vm._s(_vm.user.name) +
+              " with email " +
+              _vm._s(_vm.user.email) +
+              " and token\n        " +
+              _vm._s(_vm.getToken) +
+              "\n    "
+          ),
+        ])
       : _vm._e(),
   ])
 }
