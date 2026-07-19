@@ -1,1 +1,1 @@
-# start Vue with mix Laravel
+# Start Vue with mix Laravel
